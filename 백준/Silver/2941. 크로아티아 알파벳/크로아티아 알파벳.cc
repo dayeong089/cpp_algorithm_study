@@ -1,32 +1,26 @@
 #include<iostream>
+
 using namespace std;
 
 #include<string>
 
 int main()
 {
+    string croatia[8] = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
     string str;
     cin >> str;
-    int cnt=0, i=0;
 
-    while(i < str.length())
+    for(int i=0; i<8; i++)
     {
-        cnt++;
-        if(i+2 < str.length() && str[i] == 'd' && str[i+1] == 'z' && str[i+2] == '=') { i+=3; }
-        else if(i+1 < str.length())
+        while(1)
         {
-            if(str[i] == 'c' && (str[i+1] == '=' || str[i+1] == '-')){ i+=2; }
-            else if(str[i] == 'd' && str[i+1] == '-') { i+=2; }
-            else if(str[i] == 'l' && str[i+1] == 'j') { i+=2; }
-            else if(str[i] == 'n' && str[i+1] == 'j') { i+=2; }
-            else if(str[i] == 's' && str[i+1] == '=') { i+=2; }
-            else if(str[i] == 'z' && str[i+1] == '=') { i+=2; }
-            else { i+=1; }
+            int idx = str.find(croatia[i]);
+            if(idx == std::string::npos) break;
+            str.replace(idx, croatia[i].length(), "*");
         }
-        else{ i+=1; }
     }
 
-    cout << cnt << endl;
-
+    cout << str.length() << endl;
+    
     return 0;
 }
