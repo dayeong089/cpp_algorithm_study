@@ -11,7 +11,7 @@ int main()
     {
         char m;
         cin >> m;
-        result += (int(m)-48);
+        result += (m-'0');
     }
 
     cout << result << endl;
