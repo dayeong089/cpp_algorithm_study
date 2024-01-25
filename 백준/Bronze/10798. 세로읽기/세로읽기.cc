@@ -8,10 +8,10 @@ int main()
 {
     vector<string> v;
     int max_len = 0;
+    string str;
 
     for(int i=0; i<5; i++)
     {
-        string str;
         cin >> str;
         if(str.length() > max_len) max_len = str.length();
         v.push_back(str);
