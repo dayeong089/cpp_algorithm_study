@@ -6,20 +6,15 @@ using namespace std;
 
 int main()
 {
-    vector<vector<char>> v(5, vector<char>(15, ' '));
+    vector<string> v;
     int max_len = 0;
 
     for(int i=0; i<5; i++)
     {
         string str;
         cin >> str;
-
         if(str.length() > max_len) max_len = str.length();
-
-        for(int j=0; j<str.length(); j++)
-        {
-            v[i][j] = str[j];
-        }
+        v.push_back(str);
     }
 
     string result = "";
@@ -27,13 +22,13 @@ int main()
     {
         for(int j=0; j<5; j++)
         {
-            if(v[j][i] != ' ')
+            if(v[j].length() > i)
             {
                 result += v[j][i];
             }
         }
     }
 
-    cout << result << endl;
+    cout << result << endl; 
     return 0;
 }
