@@ -38,8 +38,7 @@ int main()
             cout << stack.size() << '\n';
         }
         else{
-            if(stack.empty()) cout << '1' << '\n';
-            else cout << '0' << '\n';
+            cout << (int)stack.empty() << '\n';
         }
     }
 
