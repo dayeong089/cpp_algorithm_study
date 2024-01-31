@@ -9,24 +9,15 @@ int main()
     int arr[100001];
     bool num[2000001] = {false, };
     int n, x, y, result=0;
+
     cin >> n;
-
-    for(int i=0; i<n; i++)
-    {
-        cin >> y;
-        arr[i] = y;
-        num[y] = true;
-    }
-
+    for(int i=0; i<n; i++) cin >> arr[i];
     cin >> x;
 
     for(int i=0; i<n; i++)
     {
-        if(x-arr[i]>=1 && x-arr[i]<=1000000 && x-arr[i]!=arr[i] && num[x-arr[i]])
-        {
-            result += 1;
-            num[arr[i]] = 0;
-        }
+        if(x-arr[i]>0 && num[x-arr[i]]) result++;
+        num[arr[i]] = true;
     }
 
     cout << result << '\n';
