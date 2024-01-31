@@ -8,19 +8,12 @@ int main()
 
     string str;
     cin >> str;
-    int result = 0;
     stack<int> s;
 
     for(auto c : str)
     {
-        if(c == '(')
-        {
-            s.push(-1);
-        }
-        else if(c == '[')
-        {
-            s.push(-2);
-        }
+        if(c == '(') s.push(-1);
+        else if(c == '[') s.push(-2);
         else if(c == ')')
         {
             int val = 0;
@@ -36,13 +29,13 @@ int main()
                     if(s.top() == -1)
                     {
                         s.pop();
-                        if(val == 0) s.push(2);
+                        if(!val) s.push(2);
                         else s.push(val*2);
                         break;
                     }
                     else
                     {
-                        val += (s.top());
+                        val += s.top();
                         s.pop();
                     }
                 }
@@ -63,15 +56,13 @@ int main()
                     if(s.top() == -2)
                     {
                         s.pop();
-                        if(val == 0) s.push(3);
-                        else {
-                            s.push(val*3);
-                        }
+                        if(!val) s.push(3);
+                        else s.push(val*3);
                         break;
                     }
                     else
                     {
-                        val += (s.top());
+                        val += s.top();
                         s.pop();
                     }
                 }
@@ -79,10 +70,10 @@ int main()
         }
     }
 
-
+    int result = 0;
     while(!s.empty())
     {
-        if(s.top()<0)
+        if(s.top() < 0)
         {
             cout << '0' << '\n';
             return 0;
