@@ -13,13 +13,13 @@ int main()
     {
         stack<char> s;
         int check = 1;
-        for(int i=0; i<str.size(); i++)
+        for(auto c : str)
         {
-            if(str[i] == '(' || str[i] == '[')
+            if(c == '(' || c == '[')
             {
-                s.push(str[i]);
+                s.push(c);
             }
-            else if(str[i] == ')')
+            else if(c == ')')
             {
                 if(!s.empty() && s.top() == '(')
                 {
@@ -31,7 +31,7 @@ int main()
                     break;
                 }
             }
-            else if(str[i] == ']')
+            else if(c == ']')
             {
                 if(!s.empty() && s.top() == '[')
                 {
