@@ -24,30 +24,14 @@ int main()
             if(op == 'I') s.insert(num);
             else
             {
-                if(!s.empty())
-                {
-                    if(num == 1)
-                    {
-                        auto it = s.end();
-                        it--;
-                        s.erase(s.find(*it));
-                    }
-                    else
-                    {
-                        auto it = s.begin();
-                        s.erase(s.find(*it));
-                    }
-                }
+                if(s.empty()) continue;
+                if(num == 1) s.erase(prev(s.end()));
+                else s.erase(s.begin());
             }
         }
 
         if(s.empty()) cout << "EMPTY" << '\n';
-        else{
-            auto it = s.end();
-            it--;
-            auto it2 = s.begin();
-            cout << *it << ' ' << *it2 << '\n';
-        }
+        else cout << *(prev(s.end())) << ' ' << *(s.begin()) << '\n';
     }
 
     return 0;
