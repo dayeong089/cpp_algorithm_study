@@ -6,29 +6,15 @@
 
 using namespace std;
 
-/*
-8 8 1
-1 5
-1 2
-2 3
-3 4
-5 4
-4 6
-6 7
-6 8
-6
-*/
-
 int n, m, q;
 pair<int, int> edge[100005];
-int p[100005];
-int height[100005];
+vector<int> p(100005, -1);
 int check[100005];
 stack<int> s;
 
 int find(int a)
 {
-	if(p[a] == a) return a;
+	if(p[a] < 0) return a;
 	return p[a] = find(p[a]);
 }
 
@@ -37,21 +23,19 @@ long long _union(int a, int b)
 	long long result;
 	a = find(a);
 	b = find(b);
-	
-	if(a==b) {
-		result = 0;
-		return 0;
-	}
-	else result = (long long)height[a] * (long long)height[b];
 
-	if(a > b){
-		p[a] = b;
-		height[b] += height[a];
-	}
+	if(a==b) return 0;
+	else result = (long long)p[a] * (long long)p[b];
+
+	if(p[a] <= p[b]){
+        p[a] += p[b];
+        p[b] = a;
+    }
 	else{
-		p[b] = a;
-		height[a] += height[b];
-	}
+        p[b] += p[a];
+        p[a] = b;
+    }
+
 	return result;
 }
 
@@ -61,12 +45,6 @@ int main()
 	cin.tie(0);
 	
 	cin >> n >> m >> q;
-	
-	for(int i=0; i<=n; i++)
-	{
-		p[i] = i;
-		height[i] = 1;
-	}
 	
 	for(int i=1; i<=m; i++)
 	{
@@ -94,10 +72,10 @@ int main()
 	{
 		int now = s.top();
 		s.pop();
-		
+
 		int x = edge[now].first;
 		int y = edge[now].second;
-		
+
 		result += (_union(x, y));
 	}
 	
