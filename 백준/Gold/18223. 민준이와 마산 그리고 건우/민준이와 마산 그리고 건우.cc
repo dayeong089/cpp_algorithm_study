@@ -55,11 +55,6 @@ int main()
         }
     }
 
-    // for(int i=1; i<=v; i++)
-    // {
-    //     cout << dist[i] << ' ';
-    // }
-
     queue<int> q;
     q.push(v);
     bool check = false;
