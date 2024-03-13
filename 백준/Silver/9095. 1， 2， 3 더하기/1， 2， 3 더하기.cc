@@ -1,28 +1,27 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<cstdio>
+
 using namespace std;
+
+int dp[15];
+int t, n;
 
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int arr[12];
-    arr[1] = 1;
-    arr[2] = 2;
-    arr[3] = 4;
+    dp[1] = 1;
+    dp[2] = 2;
+    dp[3] = 4;
 
-    int t, n;
+    for(int i=4; i<11; i++) dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+
     cin >> t;
-
-    for(int i=4; i<12; i++)
-    {
-        arr[i] = arr[i-1] + arr[i-2] + arr[i-3];
-    }
-
-    for(int i=0; i<t; i++)
+    while(t--)
     {
         cin >> n;
-        cout << arr[n] << '\n';
+        cout << dp[n] << '\n';
     }
 
     return 0;
