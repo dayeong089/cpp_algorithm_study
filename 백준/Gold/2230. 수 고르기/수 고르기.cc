@@ -1,8 +1,12 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#define INF 0X7FFFFFFF
+
 using namespace std;
 
-int n,m;
-int arr[100001];
+int n, m;
+int arr[100005];
 
 int main()
 {
@@ -11,26 +15,19 @@ int main()
 
     cin >> n >> m;
     for(int i=0; i<n; i++) cin >> arr[i];
-    sort(arr, arr+n);
 
-    int min_diff=0x7fffffff, idx1=0, idx2=1;
-    while(idx1<n && idx2<n)
+    sort(arr, arr+n);
+    int p2 = 0;
+    int min_diff = INF;
+
+    for(int p=0; p<n; p++)
     {
-        int now_diff = arr[idx2]-arr[idx1];
-        if(now_diff < m) idx2++;
-        else if(now_diff == m) 
-        {
-            min_diff = now_diff;
-            break;
-        }
-        else
-        {
-            min_diff = min(min_diff, now_diff);
-            idx1++;
-        }
+        while(arr[p2] - arr[p] < m && p2 < n) p2++;
+        if(p2 == n) break;
+        if(arr[p2] - arr[p] < min_diff) min_diff = arr[p2] - arr[p];
     }
 
-    cout << min_diff << '\n';
+    cout << min_diff;
 
     return 0;
 }
