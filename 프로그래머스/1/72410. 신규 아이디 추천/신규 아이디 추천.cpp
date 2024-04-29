@@ -13,13 +13,13 @@ string solution(string new_id) {
         else if(new_id[i] >= '0' && new_id[i] <= '9') answer += new_id[i];
         else if(new_id[i] == '-' || new_id[i] == '_') answer += new_id[i];
         else if(new_id[i] == '.' && answer == "") continue;
-        else if(new_id[i] == '.' && answer[answer.size()-1] == '.') continue;
+        else if(new_id[i] == '.' && answer.back() == '.') continue;
         else if(new_id[i] == '.') answer += new_id[i];
     }
     
     if(answer == "") answer = "a";
     if(answer.size() >= 16) answer = answer.substr(0, 15);
-    if(answer[answer.size()-1] == '.') answer = answer.substr(0, answer.size()-1);
+    if(answer.back() == '.') answer = answer.substr(0, answer.size()-1);
     if(answer.size() == 1) answer += (answer + answer);
     if(answer.size() == 2) answer += answer[answer.size()-1];
     
