@@ -9,14 +9,14 @@ int solution(vector<int> scoville, int K) {
     int answer = 0;
     
     for(int i : scoville) pq.push(i);
-    while(pq.top() < K && pq.size() >= 2)
+    while(pq.top() < K)
     {
+        if(pq.size() == 1) return -1;
         long long x = pq.top(); pq.pop();
         long long y = pq.top(); pq.pop();
         pq.push(x + y*2);
         answer++;
     }
-    if(pq.top() < K) answer = -1;
   
     return answer;
 }
