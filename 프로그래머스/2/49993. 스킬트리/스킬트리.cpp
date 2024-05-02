@@ -12,9 +12,9 @@ int solution(string skill, vector<string> skill_trees) {
         bool check = true;
         for(int j=0; j<skill_trees[i].size(); j++)
         {
-            if(skill.find(skill_trees[i][j]) != std::string::npos)
+            int now_order = skill.find(skill_trees[i][j]);
+            if(now_order != std::string::npos)
             {
-                int now_order = find(skill.begin(), skill.end(), skill_trees[i][j]) - skill.begin();
                 if(now_order > order) 
                 {
                     check = false;
