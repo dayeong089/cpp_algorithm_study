@@ -1,31 +1,26 @@
-#include<bits/stdc++.h>
+#include <iostream>
+
 using namespace std;
-
-int arr[10];
-bool isused[10];
 int n, m;
+int arr[10];
+bool isvisit[10];
 
-void func(int k)
+void func(int x)
 {
-    if(k == m)
+    if(x == m)
     {
-        for(int i=0; i<m; i++)
-        {
-            cout << arr[i] << ' ';
-        }
+        for(int i=0; i<m; i++) cout << arr[i] << ' ';
         cout << '\n';
-        return ;
+        return;
     }
 
     for(int i=1; i<=n; i++)
     {
-        if(!isused[i])
-        {
-            arr[k] = i;
-            isused[i] = 1;
-            func(k+1);
-            isused[i] = 0;
-        }
+        if(isvisit[i]) continue;
+        arr[x] = i;
+        isvisit[i] = true;
+        func(x+1);
+        isvisit[i] = false;
     }
 }
 
@@ -33,9 +28,7 @@ int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
-
     cin >> n >> m;
     func(0);
-
     return 0;
 }
