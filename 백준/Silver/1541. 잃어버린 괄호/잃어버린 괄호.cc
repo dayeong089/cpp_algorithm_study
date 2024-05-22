@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
 string str, now_num = "";
-vector<int> num;
 int answer = 0, pm = 1;
 
 int main()
@@ -24,6 +22,7 @@ int main()
         }
         else now_num += s;
     }
+    
     answer += (stoi(now_num) * pm);
     cout << answer << '\n';
     return 0;
