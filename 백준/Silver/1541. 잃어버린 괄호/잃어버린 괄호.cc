@@ -4,33 +4,27 @@
 
 using namespace std;
 
-string str;
+string str, now_num = "";
 vector<int> num;
+int answer = 0, pm = 1;
 
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cin >> str;
-    
-    string now_num = "";
-    bool minus = false;
+
     for(auto s : str)
     {
         if(s == '+' || s == '-')
         {
-            if(minus) num.push_back(-stoi(now_num));
-            else num.push_back(stoi(now_num));
+            answer += (stoi(now_num) * pm);
             now_num = "";
-            if(s == '-' && !minus) minus = true;
+            if(s == '-') pm = -1;
         }
         else now_num += s;
     }
-    if(minus) num.push_back(-stoi(now_num));
-    else num.push_back(stoi(now_num));
-
-    int answer = 0;
-    for(auto x : num) answer += x;
+    answer += (stoi(now_num) * pm);
     cout << answer << '\n';
     return 0;
 }
